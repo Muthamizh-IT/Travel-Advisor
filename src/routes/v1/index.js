@@ -4,6 +4,8 @@ const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 const locationRoute = require('./locations.route');
+const StateRoute = require('./state.route');
+const productRoute = require('./product.route');
 const router = express.Router();
 
 const defaultRoutes = [
@@ -14,6 +16,14 @@ const defaultRoutes = [
   {
     path: '/location',
     route: locationRoute,
+  },
+  {
+    path: '/state',
+    route: StateRoute,
+  },
+  {
+    path: '/product',
+    route: productRoute,
   },
   {
     path: '/users',
