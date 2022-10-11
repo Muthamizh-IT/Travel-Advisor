@@ -6,6 +6,7 @@ const config = require('../../config/config');
 const locationRoute = require('./locations.route');
 const StateRoute = require('./state.route');
 const productRoute = require('./product.route');
+const tourist = require('./tourist.route');
 const router = express.Router();
 
 const defaultRoutes = [
@@ -16,6 +17,10 @@ const defaultRoutes = [
   {
     path: '/location',
     route: locationRoute,
+  },
+  {
+    path: '/tourist',
+    route: tourist,
   },
   {
     path: '/state',
