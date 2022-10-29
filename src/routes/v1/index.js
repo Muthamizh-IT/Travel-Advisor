@@ -7,6 +7,7 @@ const locationRoute = require('./locations.route');
 const StateRoute = require('./state.route');
 const productRoute = require('./product.route');
 const tourist = require('./tourist.route');
+const imageRoute = require('./image.route');
 const router = express.Router();
 
 const defaultRoutes = [
@@ -29,6 +30,10 @@ const defaultRoutes = [
   {
     path: '/product',
     route: productRoute,
+  },
+  {
+    path: '/image',
+    route: imageRoute,
   },
   {
     path: '/users',
