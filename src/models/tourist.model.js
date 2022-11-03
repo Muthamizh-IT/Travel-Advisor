@@ -29,6 +29,10 @@ const TouristSchema = new mongoose.Schema({
   location: {
     type: String,
   },
+  topfive: {
+    type: Boolean,
+    default: false,
+  },
   created: {
     type: Date,
   },

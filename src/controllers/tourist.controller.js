@@ -32,9 +32,17 @@ const updatetouristById = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+// fetch Top FIve Tourist places
+
+const get_Top_Five_places = catchAsync(async (req, res) => {
+  const data = await TouristService.get_Top_Five_places();
+  res.send(data);
+});
+
 module.exports = {
   createTourist,
   getAlltourist,
   gettouristById,
+  get_Top_Five_places,
   updatetouristById,
 };

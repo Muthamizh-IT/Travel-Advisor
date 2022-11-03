@@ -128,9 +128,47 @@ const updateTouristById = async (id, updateBody) => {
   return tourist;
 };
 
+// fetch Top Five Places
+
+const get_Top_Five_places = async () => {
+  const data = await Tourist.aggregate([
+    {
+      $match: {
+        topfive: true,
+      },
+    },
+    {
+      $lookup: {
+        from: 'states',
+        localField: 'stateId',
+        foreignField: '_id',
+        as: 'State',
+      },
+    },
+    {
+      $unwind: '$State',
+    },
+    {
+      $project: {
+        _id: 1,
+        stateId: 1,
+        name: 1,
+        info: 1,
+        img: 1,
+        location: 1,
+        topfive: 1,
+        StateName: '$State.name',
+        StateHistory: '$State.history',
+      },
+    },
+  ]);
+  return data;
+};
+
 module.exports = {
   createTourist,
   getAllTourist,
   gettouristById,
   updateTouristById,
+  get_Top_Five_places,
 };
