@@ -31,9 +31,27 @@ const updateLocationById = async (id, updateBody) => {
   return states;
 };
 
+const getDetailsBy_State = async (id) => {
+  let values = await State.aggregate([
+    {
+      $match: { _id: id },
+    },
+    {
+      $lookup: {
+        from: 'tourists',
+        localField: '_id',
+        foreignField: 'stateId',
+        as: 'touristplaces',
+      },
+    },
+  ]);
+  return values;
+};
+
 module.exports = {
   createState,
   getAllState,
   getStateById,
   updateLocationById,
+  getDetailsBy_State,
 };

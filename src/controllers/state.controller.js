@@ -33,9 +33,15 @@ const updatestateById = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const getDetailsBy_State = catchAsync(async (req, res) => {
+  const data = await stateService.getDetailsBy_State(req.params.id);
+  res.send(data);
+});
+
 module.exports = {
   createStates,
   getAllStates,
   getStateById,
   updatestateById,
+  getDetailsBy_State,
 };
