@@ -8,6 +8,8 @@ const StateRoute = require('./state.route');
 const productRoute = require('./product.route');
 const tourist = require('./tourist.route');
 const imageRoute = require('./image.route');
+const CategoryRoute = require('./category.route');
+
 const router = express.Router();
 
 const defaultRoutes = [
@@ -18,6 +20,10 @@ const defaultRoutes = [
   {
     path: '/location',
     route: locationRoute,
+  },
+  {
+    path: '/category',
+    route: CategoryRoute,
   },
   {
     path: '/tourist',

@@ -6,3 +6,4 @@ module.exports.locationService = require('./locations.service');
 module.exports.stateService = require('./state.service');
 module.exports.productService = require('./product.service');
 module.exports.TouristService = require('./tourist.service');
+module.exports.CategoryService = require('./categories.service');

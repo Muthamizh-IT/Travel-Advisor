@@ -4,3 +4,4 @@ module.exports.Location = require('./locations.model');
 module.exports.State = require('./states.model');
 module.exports.Products = require('./product.model');
 module.exports.Tourist = require('./tourist.model');
+module.exports.Category = require('./categories.model');
