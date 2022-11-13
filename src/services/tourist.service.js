@@ -77,10 +77,44 @@ const get_Top_Five_places = async () => {
   return data;
 };
 
+// get places with states
+
+const Fetch_placesWith_state = async (page) => {
+  const values = await Tourist.aggregate([
+    {
+      $lookup: {
+        from: 'states',
+        localField: 'stateId',
+        foreignField: '_id',
+        as: 'State',
+      },
+    },
+    {
+      $unwind: '$State',
+    },
+    {
+      $project: {
+        _id: 1,
+        stateId: 1,
+        name: 1,
+        info: 1,
+        img: 1,
+        State: '$State.name',
+      },
+    },
+    {
+      $skip: page * 10,
+    },
+    { $limit: 10 },
+  ]);
+  return values;
+};
+
 module.exports = {
   createTourist,
   getAllTourist,
   gettouristById,
   updateTouristById,
   get_Top_Five_places,
+  Fetch_placesWith_state,
 };
