@@ -107,7 +107,20 @@ const Fetch_placesWith_state = async (page) => {
     },
     { $limit: 10 },
   ]);
-  return values;
+  const total = await Tourist.aggregate([
+    {
+      $lookup: {
+        from: 'states',
+        localField: 'stateId',
+        foreignField: '_id',
+        as: 'State',
+      },
+    },
+    {
+      $unwind: '$State',
+    },
+  ]);
+  return { values: values, total: total.length };
 };
 
 module.exports = {
