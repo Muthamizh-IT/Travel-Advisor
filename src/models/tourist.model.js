@@ -33,6 +33,12 @@ const TouristSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  lat: {
+    type: Number,
+  },
+  long: {
+    type: Number,
+  },
   created: {
     type: Date,
   },
