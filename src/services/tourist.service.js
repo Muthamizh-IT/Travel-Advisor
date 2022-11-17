@@ -101,6 +101,7 @@ const Fetch_placesWith_state = async (page) => {
         img: 1,
         State: '$State.name',
         topfive: 1,
+        active:1
       },
     },
     {
