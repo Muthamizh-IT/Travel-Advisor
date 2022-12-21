@@ -33,6 +33,10 @@ const StateShema = new mongoose.Schema({
   img: {
     type: Array,
   },
+  lat: {
+    type: String,
+  },
+  long: { type: String },
   created: {
     type: Date,
   },
