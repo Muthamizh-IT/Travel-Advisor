@@ -23,11 +23,13 @@ const getStateById = async (id) => {
 };
 
 const updateLocationById = async (id, updateBody) => {
+  console.log(updateBody);
   let states = await State.findOne({ _id: id, active: true });
+  console.log(states);
   if (!states) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Locations Not Available');
   }
-  states = await State.findByIdAndUpdate({ _id: id }, { updateBody }, { new: true });
+  states = await State.findByIdAndUpdate({ _id: id }, updateBody, { new: true });
   return states;
 };
 

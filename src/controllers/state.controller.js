@@ -30,6 +30,7 @@ const getStateById = catchAsync(async (req, res) => {
 
 const updatestateById = catchAsync(async (req, res) => {
   const data = await stateService.updateLocationById(req.params.id, req.body);
+  data.save();
   res.send(data);
 });
 
