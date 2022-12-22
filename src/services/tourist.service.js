@@ -3,19 +3,10 @@ const { Tourist } = require('../models');
 const ApiError = require('../utils/ApiError');
 const moment = require('moment');
 
-const createTourist = async () => {
-  // tourist.forEach(async (e) => {
-  //   await Tourist.create({
-  //     locationId: 'b813c8ef-7e7e-4a2a-a318-55bf8de1ec14',
-  //     stateId: '70e2f42e-7c30-4039-8876-204228e2aa9b',
-  //     name: e.name,
-  //     info: e.info,
-  //     img: e.images,
-  //     location: e.location,
-  //     created: moment(),
-  //   });
-  // });
-  return { message: 'Mooditu podaaaa' };
+const createTourist = async (body) => {
+  let values = { ...body, ...{ created: moment() } };
+  const data = await Tourist.create(values);
+  return data;
 };
 
 const getAllTourist = async () => {
@@ -36,7 +27,7 @@ const updateTouristById = async (id, updateBody) => {
   if (!tourist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Tourist Not Available');
   }
-  tourist = await Tourist.findByIdAndUpdate({ _id: id }, { updateBody }, { new: true });
+  tourist = await Tourist.findByIdAndUpdate({ _id: id }, updateBody, { new: true });
   return tourist;
 };
 
@@ -100,9 +91,12 @@ const Fetch_placesWith_state = async (page) => {
         info: 1,
         img: 1,
         State: '$State.name',
-        topfive: 1,
-        active:1
+        topfive: { $ifNull: ['$topfive', false] },
+        active: 1,
       },
+    },
+    {
+      $sort: { topfive: -1 },
     },
     {
       $skip: page * 10,
