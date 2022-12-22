@@ -93,6 +93,8 @@ const Fetch_placesWith_state = async (page) => {
         State: '$State.name',
         topfive: { $ifNull: ['$topfive', false] },
         active: 1,
+        lat: 1,
+        long: 1,
       },
     },
     {
@@ -119,6 +121,20 @@ const Fetch_placesWith_state = async (page) => {
   return { values: values, total: total.length };
 };
 
+const UpdateTopFivePlaces = async (id, body) => {
+  let values = await Tourist.findById(id);
+  let topfive = await Tourist.find({ topfive: true });
+  let len = topfive.length;
+  if (len >= 5) {
+    throw new ApiError(httpStatus, 'Already Five Places in Top');
+  }
+  if (!values) {
+    throw new ApiError(httpStatus, 'Place Not Found');
+  }
+  values = await Tourist.findByIdAndUpdate({ _id: id }, body, { new: true });
+  return values;
+};
+
 module.exports = {
   createTourist,
   getAllTourist,
@@ -126,4 +142,5 @@ module.exports = {
   updateTouristById,
   get_Top_Five_places,
   Fetch_placesWith_state,
+  UpdateTopFivePlaces,
 };

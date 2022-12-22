@@ -42,8 +42,13 @@ const get_Top_Five_places = catchAsync(async (req, res) => {
 // Fetch Tourist places
 
 const Fetch_placesWith_state = catchAsync(async (req, res) => {
-  console.log(req.query)
+  console.log(req.query);
   const data = await TouristService.Fetch_placesWith_state(req.query.page);
+  res.send(data);
+});
+
+const UpdateTopFivePlaces = catchAsync(async (req, res) => {
+  const data = await TouristService.UpdateTopFivePlaces(req.params.id, req.body);
   res.send(data);
 });
 
@@ -54,4 +59,5 @@ module.exports = {
   get_Top_Five_places,
   updatetouristById,
   Fetch_placesWith_state,
+  UpdateTopFivePlaces,
 };
