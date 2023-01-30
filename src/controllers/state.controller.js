@@ -39,10 +39,16 @@ const getDetailsBy_State = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const getPopular_States = catchAsync(async (req, res) => {
+  const data = await stateService.getPopular_States();
+  res.send(data);
+});
+
 module.exports = {
   createStates,
   getAllStates,
   getStateById,
   updatestateById,
   getDetailsBy_State,
+  getPopular_States,
 };

@@ -50,10 +50,15 @@ const getDetailsBy_State = async (id) => {
   return values;
 };
 
+const getPopular_States = async () => {
+  const data = await State.find().limit(9);
+  return data;
+};
 module.exports = {
   createState,
   getAllState,
   getStateById,
   updateLocationById,
   getDetailsBy_State,
+  getPopular_States,
 };
