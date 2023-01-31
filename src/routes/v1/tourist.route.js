@@ -7,4 +7,5 @@ router.route('/:id').get(TouristController.gettouristById).put(TouristController
 router.route('/fetchTop/Fiveplaces').get(TouristController.get_Top_Five_places);
 router.route('/fetch/tourist/places').get(TouristController.Fetch_placesWith_state);
 router.route('/UpdateTopFive/Places/:id').put(TouristController.UpdateTopFivePlaces);
+router.route('/getPopular/RomanticPlace').get(TouristController.getPopular_RomanticPlace);
 module.exports = router;

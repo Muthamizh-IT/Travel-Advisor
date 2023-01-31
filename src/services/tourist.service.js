@@ -135,6 +135,11 @@ const UpdateTopFivePlaces = async (id, body) => {
   return values;
 };
 
+const getPopular_RomanticPlace = async () => {
+  const data = await Tourist.find({ romantic: true });
+  return data;
+};
+
 module.exports = {
   createTourist,
   getAllTourist,
@@ -143,4 +148,5 @@ module.exports = {
   get_Top_Five_places,
   Fetch_placesWith_state,
   UpdateTopFivePlaces,
+  getPopular_RomanticPlace,
 };
