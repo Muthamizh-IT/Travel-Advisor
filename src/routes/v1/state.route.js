@@ -6,4 +6,5 @@ router.route('/').post(StateController.createStates).get(StateController.getAllS
 router.route('/:id').get(StateController.getStateById).put(StateController.updatestateById);
 router.route('/details/Bystate/:id').get(StateController.getDetailsBy_State);
 router.route('/popular/states').get(StateController.getPopular_States);
+router.route('/getStates/ByPartition/:id').get(StateController.getStates_By_Partition);
 module.exports = router;

@@ -44,6 +44,11 @@ const getPopular_States = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const getStates_By_Partition = catchAsync(async (req, res) => {
+  const data = await stateService.getStates_By_Partition(req.params.id);
+  res.send(data);
+});
+
 module.exports = {
   createStates,
   getAllStates,
@@ -51,4 +56,5 @@ module.exports = {
   updatestateById,
   getDetailsBy_State,
   getPopular_States,
+  getStates_By_Partition,
 };

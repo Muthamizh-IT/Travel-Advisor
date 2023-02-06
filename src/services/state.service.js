@@ -1,5 +1,5 @@
 const httpStatus = require('http-status');
-const { State } = require('../models');
+const { State, Category } = require('../models');
 const ApiError = require('../utils/ApiError');
 const moment = require('moment');
 
@@ -54,6 +54,20 @@ const getPopular_States = async () => {
   const data = await State.find().limit(9);
   return data;
 };
+
+// fetch state By Partition
+
+const getStates_By_Partition = async (id) => {
+  const data = await State.aggregate([
+    {
+      $match: {
+        locationId: id,
+      },
+    },
+  ]);
+  const partitions = await Category.findOne({ _id: id });
+  return { data: data, partitions: partitions };
+};
 module.exports = {
   createState,
   getAllState,
@@ -61,4 +75,5 @@ module.exports = {
   updateLocationById,
   getDetailsBy_State,
   getPopular_States,
+  getStates_By_Partition,
 };
