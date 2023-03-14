@@ -33,6 +33,13 @@ const TouristSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  placeCategory: {
+    type: String,
+  },
+  popular: {
+    type: Boolean,
+    default: false,
+  },
   lat: {
     type: Number,
   },

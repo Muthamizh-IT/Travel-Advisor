@@ -57,6 +57,11 @@ const getPopular_RomanticPlace = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const getPlaces_By_State = catchAsync(async (req, res) => {
+  const data = await TouristService.getPlaces_By_State(req.params.id);
+  res.send(data);
+});
+
 module.exports = {
   createTourist,
   getAlltourist,
@@ -66,4 +71,5 @@ module.exports = {
   Fetch_placesWith_state,
   UpdateTopFivePlaces,
   getPopular_RomanticPlace,
+  getPlaces_By_State,
 };
