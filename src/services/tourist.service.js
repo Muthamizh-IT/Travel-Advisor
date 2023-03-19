@@ -106,10 +106,7 @@ const Fetch_placesWith_state = async (page) => {
       },
     },
     {
-      $sort: { topfive: -1 },
-    },
-    {
-      $skip: page * 10,
+      $skip: 10 * page,
     },
     { $limit: 10 },
   ]);
