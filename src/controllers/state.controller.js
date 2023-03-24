@@ -49,6 +49,11 @@ const getStates_By_Partition = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const delete_image = catchAsync(async (req, res) => {
+  const data = await stateService.delete_image(req.params.id, req.body);
+  res.send(data);
+});
+
 module.exports = {
   createStates,
   getAllStates,
@@ -57,4 +62,5 @@ module.exports = {
   getDetailsBy_State,
   getPopular_States,
   getStates_By_Partition,
+  delete_image,
 };

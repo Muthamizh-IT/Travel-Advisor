@@ -68,6 +68,16 @@ const getStates_By_Partition = async (id) => {
   const partitions = await Category.findOne({ _id: id });
   return { data: data, partitions: partitions };
 };
+
+const delete_image = async (id, body) => {
+  let data = await State.findById(id);
+  if (!data) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'State Not Found');
+  }
+  data = await State.updateOne({ _id: id }, { $pull: { img: body.image } }, { new: true });
+  return { mssage: 'Image Deleted.....' };
+};
+
 module.exports = {
   createState,
   getAllState,
@@ -76,4 +86,5 @@ module.exports = {
   getDetailsBy_State,
   getPopular_States,
   getStates_By_Partition,
+  delete_image,
 };

@@ -9,5 +9,4 @@ router.route('/fetch/tourist/places').get(TouristController.Fetch_placesWith_sta
 router.route('/UpdateTopFive/Places/:id').put(TouristController.UpdateTopFivePlaces);
 router.route('/getPopular/RomanticPlace').get(TouristController.getPopular_RomanticPlace);
 router.route('/getPlaces/By/State/:id').get(TouristController.getPlaces_By_State);
-
 module.exports = router;

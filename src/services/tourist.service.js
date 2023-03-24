@@ -1,5 +1,5 @@
 const httpStatus = require('http-status');
-const { Tourist } = require('../models');
+const { Tourist, State } = require('../models');
 const ApiError = require('../utils/ApiError');
 const moment = require('moment');
 
@@ -19,7 +19,22 @@ const gettouristById = async (id) => {
   if (!values) {
     throw new ApiError(httpStatus.NOT_FOUND, 'No Tourist Found');
   }
-  return values;
+  let state = await State.findById(values.stateId);
+  let data = {
+    name: values.name,
+    topfive: values.topfive,
+    popular: values.popular,
+    active: values.active,
+    archive: values.archive,
+    locationId: values.locationId,
+    stateId: values.stateId,
+    info: values.info,
+    img: values.img,
+    location: values.location,
+    created: values.created,
+    stateName: state.name,
+  };
+  return data;
 };
 
 const updateTouristById = async (id, updateBody) => {
