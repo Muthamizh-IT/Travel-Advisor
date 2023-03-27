@@ -25,6 +25,7 @@ const TouristSchema = new mongoose.Schema({
   },
   img: {
     type: Array,
+    default: [],
   },
   location: {
     type: String,

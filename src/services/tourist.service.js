@@ -171,12 +171,21 @@ const getPlaces_By_State = async (id) => {
   return values;
 };
 
-const delete_image = async (id) => {
+const delete_image = async (id, body) => {
   let values = await Tourist.findById(id);
   if (!values) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Place Not Found');
   }
-  values = await Tourist.findByIdAndUpdate({ _id: id }, { img: '' }, { new: true });
+  values = await Tourist.findByIdAndUpdate({ _id: id }, { $pull: { img: body.image } }, { new: true });
+  return values;
+};
+
+const Upload_Image = async (id, body) => {
+  let values = await Tourist.findById(id);
+  if (!values) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Place Not Found');
+  }
+  values = await Tourist.findByIdAndUpdate({ _id: id }, { $push: { img: body.image } }, { new: true });
   return values;
 };
 
@@ -191,4 +200,5 @@ module.exports = {
   getPopular_RomanticPlace,
   getPlaces_By_State,
   delete_image,
+  Upload_Image,
 };

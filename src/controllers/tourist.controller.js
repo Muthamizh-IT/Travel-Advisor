@@ -62,6 +62,16 @@ const getPlaces_By_State = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const delete_image = catchAsync(async (req, res) => {
+  const data = await TouristService.delete_image(req.params.id, req.body);
+  res.send(data);
+});
+
+const Upload_Image = catchAsync(async (req, res) => {
+  const data = await TouristService.Upload_Image(req.params.id, req.body);
+  res.send(data);
+});
+
 module.exports = {
   createTourist,
   getAlltourist,
@@ -72,4 +82,6 @@ module.exports = {
   UpdateTopFivePlaces,
   getPopular_RomanticPlace,
   getPlaces_By_State,
+  delete_image,
+  Upload_Image,
 };

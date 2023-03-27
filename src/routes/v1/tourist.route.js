@@ -9,4 +9,6 @@ router.route('/fetch/tourist/places').get(TouristController.Fetch_placesWith_sta
 router.route('/UpdateTopFive/Places/:id').put(TouristController.UpdateTopFivePlaces);
 router.route('/getPopular/RomanticPlace').get(TouristController.getPopular_RomanticPlace);
 router.route('/getPlaces/By/State/:id').get(TouristController.getPlaces_By_State);
+router.route('/delete/image/:id').put(TouristController.delete_image);
+router.route('/Upload/Image/:id').put(TouristController.Upload_Image);
 module.exports = router;
