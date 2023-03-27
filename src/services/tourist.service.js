@@ -171,6 +171,15 @@ const getPlaces_By_State = async (id) => {
   return values;
 };
 
+const delete_image = async (id) => {
+  let values = await Tourist.findById(id);
+  if (!values) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Place Not Found');
+  }
+  values = await Tourist.findByIdAndUpdate({ _id: id }, { img: '' }, { new: true });
+  return values;
+};
+
 module.exports = {
   createTourist,
   getAllTourist,
@@ -181,4 +190,5 @@ module.exports = {
   UpdateTopFivePlaces,
   getPopular_RomanticPlace,
   getPlaces_By_State,
+  delete_image,
 };

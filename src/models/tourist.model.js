@@ -24,7 +24,7 @@ const TouristSchema = new mongoose.Schema({
     type: String,
   },
   img: {
-    type: String,
+    type: Array,
   },
   location: {
     type: String,
@@ -49,9 +49,33 @@ const TouristSchema = new mongoose.Schema({
   created: {
     type: Date,
   },
+  time: {
+    type: String,
+  },
+  language: {
+    type: String,
+  },
+  Rating: {
+    type: String,
+  },
+  hotel_Name: {
+    type: String,
+  },
+  hotel_Image: {
+    type: String,
+  },
+  Like_Count: {
+    type: String,
+  },
+  history: {
+    type: String,
+  },
   active: {
     type: Boolean,
     default: true,
+  },
+  specialFood: {
+    type: String,
   },
   archive: {
     type: Boolean,
