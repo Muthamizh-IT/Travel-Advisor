@@ -23,7 +23,6 @@ const getStateById = async (id) => {
 };
 
 const updateLocationById = async (id, updateBody) => {
-  console.log(updateBody);
   let states = await State.findOne({ _id: id, active: true });
   console.log(states);
   if (!states) {
@@ -31,6 +30,18 @@ const updateLocationById = async (id, updateBody) => {
   }
   states = await State.findByIdAndUpdate({ _id: id }, updateBody, { new: true });
   return states;
+};
+
+// upload Image
+
+const uploadImage = async (id, body) => {
+  const { image } = body;
+  let values = await State.findById(id);
+  if (!values) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Not Found');
+  }
+  values = await State.findByIdAndUpdate({ _id: id }, { $push: { img: body.image } }, { new: true });
+  return values;
 };
 
 const getDetailsBy_State = async (id) => {
@@ -87,4 +98,5 @@ module.exports = {
   getPopular_States,
   getStates_By_Partition,
   delete_image,
+  uploadImage,
 };

@@ -54,6 +54,11 @@ const delete_image = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const uploadImage = catchAsync(async (req, res) => {
+  const data = await stateService.uploadImage(req.params.id, req.body);
+  res.send(data);
+});
+
 module.exports = {
   createStates,
   getAllStates,
@@ -63,4 +68,5 @@ module.exports = {
   getPopular_States,
   getStates_By_Partition,
   delete_image,
+  uploadImage,
 };
