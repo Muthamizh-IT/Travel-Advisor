@@ -135,6 +135,7 @@ const Fetch_placesWith_state = async (page, name) => {
         active: 1,
         lat: 1,
         long: 1,
+        placeCategory: 1,
       },
     },
     {
