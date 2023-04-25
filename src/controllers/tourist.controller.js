@@ -42,8 +42,7 @@ const get_Top_Five_places = catchAsync(async (req, res) => {
 // Fetch Tourist places
 
 const Fetch_placesWith_state = catchAsync(async (req, res) => {
-  console.log(req.query);
-  const data = await TouristService.Fetch_placesWith_state(req.query.page);
+  const data = await TouristService.Fetch_placesWith_state(req.query.page, req.query.name);
   res.send(data);
 });
 

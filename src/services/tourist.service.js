@@ -99,8 +99,18 @@ const get_Top_Five_places = async () => {
 
 // get places with states
 
-const Fetch_placesWith_state = async (page) => {
+const Fetch_placesWith_state = async (page, name) => {
+  let nameMatch = { active: true };
+  if (name) {
+    nameMatch = { name: { $regex: name, $options: 'i' } };
+  }
   const values = await Tourist.aggregate([
+    {
+      $sort: { created: -1 },
+    },
+    {
+      $match: { $and: [nameMatch] },
+    },
     {
       $lookup: {
         from: 'states',
@@ -132,6 +142,9 @@ const Fetch_placesWith_state = async (page) => {
     { $limit: 10 },
   ]);
   const total = await Tourist.aggregate([
+    {
+      $match: { $and: [nameMatch] },
+    },
     {
       $lookup: {
         from: 'states',
