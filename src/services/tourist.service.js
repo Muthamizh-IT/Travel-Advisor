@@ -39,6 +39,7 @@ const gettouristById = async (id) => {
     history: values.history,
     language: values.language,
     specialFood: values.specialFood,
+    category: values.placeCategory,
   };
   return data;
 };
