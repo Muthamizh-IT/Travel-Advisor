@@ -71,6 +71,11 @@ const Upload_Image = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const getCategories_ByStates = catchAsync(async (req, res) => {
+  const data = await TouristService.getCategories_ByStates(req.params.id)
+  res.send(data)
+})
+
 module.exports = {
   createTourist,
   getAlltourist,
@@ -83,4 +88,5 @@ module.exports = {
   getPlaces_By_State,
   delete_image,
   Upload_Image,
+  getCategories_ByStates
 };

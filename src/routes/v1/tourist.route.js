@@ -11,4 +11,5 @@ router.route('/getPopular/RomanticPlace').get(TouristController.getPopular_Roman
 router.route('/getPlaces/By/State/:id').get(TouristController.getPlaces_By_State);
 router.route('/delete/image/:id').put(TouristController.delete_image);
 router.route('/Upload/Image/:id').put(TouristController.Upload_Image);
+router.route('/getCategories/ByStates/:id').get(TouristController.getCategories_ByStates)
 module.exports = router;

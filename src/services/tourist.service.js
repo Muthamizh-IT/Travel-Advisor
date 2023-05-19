@@ -210,6 +210,37 @@ const Upload_Image = async (id, body) => {
   return values;
 };
 
+const getCategories_ByStates = async (id) => {
+  let Temples = await Tourist.aggregate([{
+    $match: {
+      stateId: id,
+      placeCategory: { $in: ['temples'] }
+    }
+  }])
+
+  let natiral_hills = await Tourist.aggregate([{
+    $match: {
+      stateId: id,
+      placeCategory: { $in: ['hills', 'caves', 'natural', 'mangrove forest'] }
+    }
+  }])
+
+  let others = await Tourist.aggregate([{
+    $match: {
+      stateId: id,
+      placeCategory: { $nin: ['temples', 'hills', 'caves', 'natural', 'mangrove forest'] }
+    }
+  }])
+
+  return {
+    Temples: Temples,
+    natural_hills: natiral_hills,
+    others: others
+  }
+
+}
+
+
 module.exports = {
   createTourist,
   getAllTourist,
@@ -222,4 +253,5 @@ module.exports = {
   getPlaces_By_State,
   delete_image,
   Upload_Image,
+  getCategories_ByStates
 };
