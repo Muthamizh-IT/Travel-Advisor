@@ -72,9 +72,14 @@ const Upload_Image = catchAsync(async (req, res) => {
 });
 
 const getCategories_ByStates = catchAsync(async (req, res) => {
-  const data = await TouristService.getCategories_ByStates(req.params.id)
-  res.send(data)
-})
+  const data = await TouristService.getCategories_ByStates(req.params.id);
+  res.send(data);
+});
+
+const addRomaticPlaces = catchAsync(async (req, res) => {
+  const data = await TouristService.addRomaticPlaces(req.params.id, req.body);
+  res.send(data);
+});
 
 module.exports = {
   createTourist,
@@ -88,5 +93,6 @@ module.exports = {
   getPlaces_By_State,
   delete_image,
   Upload_Image,
-  getCategories_ByStates
+  getCategories_ByStates,
+  addRomaticPlaces,
 };

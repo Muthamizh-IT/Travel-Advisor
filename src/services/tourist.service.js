@@ -211,35 +211,53 @@ const Upload_Image = async (id, body) => {
 };
 
 const getCategories_ByStates = async (id) => {
-  let Temples = await Tourist.aggregate([{
-    $match: {
-      stateId: id,
-      placeCategory: { $in: ['temples'] }
-    }
-  }])
+  let Temples = await Tourist.aggregate([
+    {
+      $match: {
+        stateId: id,
+        placeCategory: { $in: ['temples'] },
+      },
+    },
+  ]);
 
-  let natiral_hills = await Tourist.aggregate([{
-    $match: {
-      stateId: id,
-      placeCategory: { $in: ['hills', 'caves', 'natural', 'mangrove forest'] }
-    }
-  }])
+  let natiral_hills = await Tourist.aggregate([
+    {
+      $match: {
+        stateId: id,
+        placeCategory: { $in: ['hills', 'caves', 'natural', 'mangrove forest'] },
+      },
+    },
+  ]);
 
-  let others = await Tourist.aggregate([{
-    $match: {
-      stateId: id,
-      placeCategory: { $nin: ['temples', 'hills', 'caves', 'natural', 'mangrove forest'] }
-    }
-  }])
+  let others = await Tourist.aggregate([
+    {
+      $match: {
+        stateId: id,
+        placeCategory: { $nin: ['temples', 'hills', 'caves', 'natural', 'mangrove forest'] },
+      },
+    },
+  ]);
 
   return {
     Temples: Temples,
     natural_hills: natiral_hills,
-    others: others
+    others: others,
+  };
+};
+
+const addRomaticPlaces = async (id) => {
+  let values = await Tourist.findById(id);
+  if (!values) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Place Not Found');
   }
-
-}
-
+  let findplaceCount = await Tourist.find({ romatic: true }).count();
+  if (findplaceCount >= 5) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Already have five Romantic places');
+  } else {
+    values = await Tourist.findByIdAndUpdate({ _id: id }, { romantic: true }, { new: true });
+  }
+  return values;
+};
 
 module.exports = {
   createTourist,
@@ -253,5 +271,6 @@ module.exports = {
   getPlaces_By_State,
   delete_image,
   Upload_Image,
-  getCategories_ByStates
+  getCategories_ByStates,
+  addRomaticPlaces,
 };
