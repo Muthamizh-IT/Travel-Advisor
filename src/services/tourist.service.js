@@ -250,7 +250,7 @@ const addRomaticPlaces = async (id) => {
   if (!values) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Place Not Found');
   }
-  let findplaceCount = await Tourist.find({ romatic: true }).count();
+  let findplaceCount = await Tourist.find({ romantic: true }).count();
   if (findplaceCount >= 5) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Already have five Romantic places');
   } else {
