@@ -9,13 +9,17 @@ const productRoute = require('./product.route');
 const tourist = require('./tourist.route');
 const imageRoute = require('./image.route');
 const CategoryRoute = require('./category.route');
-
+const BudgetUserRoute = require('./budgetUser.route');
 const router = express.Router();
 
 const defaultRoutes = [
   {
     path: '/auth',
     route: authRoute,
+  },
+  {
+    path: '/budgetUser',
+    route: BudgetUserRoute,
   },
   {
     path: '/location',
