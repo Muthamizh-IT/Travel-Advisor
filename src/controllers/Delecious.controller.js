@@ -9,6 +9,12 @@ const ImageUpload = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const filtersBy_KeyWords = catchAsync(async (req, res) => {
+  const data = await DeleciousService.filtersBy_KeyWords(req);
+  res.send(data);
+});
+
 module.exports = {
   ImageUpload,
+  filtersBy_KeyWords,
 };

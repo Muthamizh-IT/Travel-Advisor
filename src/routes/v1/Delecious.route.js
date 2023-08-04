@@ -12,5 +12,6 @@ const storage = multer.memoryStorage({
 const ImageuploadMiddleWare = multer({ storage }).array('ImageURL');
 
 router.route('/ImageUpload').post(ImageuploadMiddleWare, DeleciousController.ImageUpload);
+router.route('/filters').get(DeleciousController.filtersBy_KeyWords);
 
 module.exports = router;

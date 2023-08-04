@@ -30,6 +30,18 @@ const ImageUploadService = async (req) => {
   });
 };
 
+const filtersBy_KeyWords = async (req) => {
+  let key = req.query.keys;
+
+  let values = await Delecious.aggregate([
+    {
+      $match: { Title: { $regex: key, $options: 'i' } },
+    },
+  ]);
+  return values;
+};
+
 module.exports = {
   ImageUploadService,
+  filtersBy_KeyWords,
 };
