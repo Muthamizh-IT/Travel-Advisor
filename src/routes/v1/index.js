@@ -10,6 +10,7 @@ const tourist = require('./tourist.route');
 const imageRoute = require('./image.route');
 const CategoryRoute = require('./category.route');
 const BudgetUserRoute = require('./budgetUser.route');
+const DeleciousRoute = require('./Delecious.route');
 const router = express.Router();
 
 const defaultRoutes = [
@@ -24,6 +25,10 @@ const defaultRoutes = [
   {
     path: '/location',
     route: locationRoute,
+  },
+  {
+    path: '/DeleciousApp',
+    route: DeleciousRoute,
   },
   {
     path: '/category',
