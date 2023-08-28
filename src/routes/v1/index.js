@@ -11,12 +11,17 @@ const imageRoute = require('./image.route');
 const CategoryRoute = require('./category.route');
 const BudgetUserRoute = require('./budgetUser.route');
 const DeleciousRoute = require('./Delecious.route');
+const DrawingRoute = require('./Drawing.route');
 const router = express.Router();
 
 const defaultRoutes = [
   {
     path: '/auth',
     route: authRoute,
+  },
+  {
+    path: '/drawing',
+    route: DrawingRoute,
   },
   {
     path: '/budgetUser',
