@@ -23,6 +23,9 @@ const DrawingAppSchema = new mongoose.Schema({
   applyColor: {
     type: Array,
   },
+  level: {
+    type: Number,
+  },
 });
 
 const Drawing = mongoose.model('drawing', DrawingAppSchema);
