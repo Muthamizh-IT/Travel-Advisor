@@ -14,7 +14,13 @@ const createDrawing_Data = catchAsync(async (req, res) => {
   res.send(data);
 });
 
+const getAllDrwaingData = catchAsync(async (req, res) => {
+  const data = await DrwaingService.getAllDrwaingData();
+  res.send(data);
+});
+
 module.exports = {
   createDrawing,
   createDrawing_Data,
+  getAllDrwaingData,
 };

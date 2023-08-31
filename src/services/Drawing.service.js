@@ -50,7 +50,13 @@ const createDrawing_Data = async (body) => {
   return creations;
 };
 
+const getAllDrwaingData = async () => {
+  let values = await Drawing.find();
+  return values;
+};
+
 module.exports = {
   createDrawing,
   createDrawing_Data,
+  getAllDrwaingData,
 };
