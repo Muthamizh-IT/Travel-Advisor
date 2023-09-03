@@ -50,8 +50,15 @@ const createDrawing_Data = async (body) => {
   return creations;
 };
 
-const getAllDrwaingData = async () => {
-  let values = await Drawing.find();
+const getAllDrwaingData = async (query) => {
+  let { level } = query;
+  level = parseInt(level);
+  let levelMatch = { active: true };
+  if (level) {
+    levelMatch = { level: level };
+  }
+
+  let values = await Drawing.aggregate([{ $match: { levelMatch } }]);
   return values;
 };
 
