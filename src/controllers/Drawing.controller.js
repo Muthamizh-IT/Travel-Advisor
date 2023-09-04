@@ -15,7 +15,7 @@ const createDrawing_Data = catchAsync(async (req, res) => {
 });
 
 const getAllDrwaingData = catchAsync(async (req, res) => {
-  const data = await DrwaingService.getAllDrwaingData();
+  const data = await DrwaingService.getAllDrwaingData(req.query);
   res.send(data);
 });
 

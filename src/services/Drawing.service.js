@@ -55,10 +55,11 @@ const getAllDrwaingData = async (query) => {
   level = parseInt(level);
   let levelMatch = { active: true };
   if (level) {
+    console.log(level, 'level');
     levelMatch = { level: level };
   }
 
-  let values = await Drawing.aggregate([{ $match: { levelMatch } }]);
+  let values = await Drawing.aggregate([{ $match: { level: { $eq: level } } }]);
   return values;
 };
 
