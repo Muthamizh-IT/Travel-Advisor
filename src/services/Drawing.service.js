@@ -5,6 +5,7 @@ const moment = require('moment');
 const AWS = require('aws-sdk');
 
 const createDrawing = async (req) => {
+  2;
   const { id } = req.body;
   const s3 = new AWS.S3({
     accessKeyId: 'AKIASTWHV6AFKUYOZZ2J',
@@ -45,8 +46,7 @@ const createDrawing = async (req) => {
 };
 
 const createDrawing_Data = async (body) => {
-  let findCount = await Drawing.find().count();
-  let creations = await Drawing.create({ id: findCount, ...body });
+  let creations = await Drawing.create(body);
   return creations;
 };
 
@@ -63,8 +63,18 @@ const getAllDrwaingData = async (query) => {
   return values;
 };
 
+const updatDraingData = async (id, body) => {
+  let values = await Drawing.findById(id);
+  if (!values) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Not Found');
+  }
+  values = await Drawing.findByIdAndUpdate({ _id: id }, body, { new: true });
+  return values;
+};
+
 module.exports = {
   createDrawing,
   createDrawing_Data,
   getAllDrwaingData,
+  updatDraingData,
 };

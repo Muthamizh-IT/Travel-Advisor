@@ -18,5 +18,6 @@ const ImageuploadMiddleWare = multer({ storage }).fields([
 
 router.route('/uploadImage').post(ImageuploadMiddleWare, DrwaingController.createDrawing);
 router.route('/').post(DrwaingController.createDrawing_Data).get(DrwaingController.getAllDrwaingData);
+router.route('/updatDraingData/:id').put(DrwaingController.updatDraingData);
 
 module.exports = router;
