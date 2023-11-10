@@ -5,7 +5,6 @@ const moment = require('moment');
 const AWS = require('aws-sdk');
 
 const createDrawing = async (req) => {
-  2;
   const { id } = req.body;
   const s3 = new AWS.S3({
     accessKeyId: 'AKIASTWHV6AFKUYOZZ2J',

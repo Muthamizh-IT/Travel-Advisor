@@ -4,9 +4,6 @@ const BudgetUser = require('../models/budgetUser.model');
 const bcrypt = require('bcryptjs');
 
 const createUser = async (body) => {
-  const saltRounds = 10;
-  const salt = bcrypt.genSaltSync(saltRounds);
-  const hash = bcrypt.hashSync(body.Password, salt);
   const findByMobile = await BudgetUser.findOne({ mobileNumber: body.mobileNumber });
   if (findByMobile) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'User Already Register');
@@ -15,7 +12,7 @@ const createUser = async (body) => {
     userName: body.userName,
     monthlyIncome: body.monthlyIncome,
     mobileNumber: body.mobileNumber,
-    Password: hash,
+    Password: body.Password,
   });
   return creation;
 };
@@ -29,6 +26,7 @@ const Verified = async (body) => {
 const Login = async (body) => {
   const { mobileNumber, Password } = body;
   const user = await BudgetUser.findOne({ mobileNumber: mobileNumber, verified: true });
+  console.log(await user.isPasswordMatch('12345678'));
   if (!user || !(await user.isPasswordMatch(Password))) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Incorrect Mobile or password');
   }
